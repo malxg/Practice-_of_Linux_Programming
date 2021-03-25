@@ -1,8 +1,11 @@
-#include "net.h"
+#include "Tnet.h"
+
+
 
 int main()
 {
-	int sockfd,client_fd;
+	int sockfd,client_fd,recvbytes;
+	char buf[MAXDATASIZE];
 	struct sockaddr_in my_addr;
 	struct sockaddr_in remote_addr;
 	int sin_size;
@@ -34,13 +37,14 @@ int main()
 			continue;
 		}
 		printf("accept a connection from %s\n ",inet_ntoa(remote_addr.sin_addr));
+		
 		if(!fork())
 		{
 			if(send(client_fd,"link successful\n",26,0)==-1)
 			perror("send error!");
 			exit(0);
 		}
-		printf("%s",remote_addr.sin_zero);
+
 		close(client_fd);
 	}	
 }

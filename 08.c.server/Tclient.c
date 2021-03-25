@@ -1,4 +1,4 @@
-#include "net.h"
+#include "Tnet.h"
 
 int main(int argc,char *argv[])
 {
